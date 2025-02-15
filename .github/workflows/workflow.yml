@@ -27,6 +27,7 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    if: contains(['refs/heads/dev', 'refs/heads/staging', 'refs/heads/prod'], github.ref)
     needs: build
     steps:
       - name: Deploy
