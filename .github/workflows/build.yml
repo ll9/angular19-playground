@@ -2,8 +2,6 @@ name: Angular Build
 
 # {1}
 on:
-  push:
-    branches: [ "master" ]
   pull_request:
   workflow_dispatch:
     

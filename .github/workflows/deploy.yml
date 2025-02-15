@@ -1,17 +1,32 @@
-name: Angular Deploy
+name: Angular Build
 
 # {1}
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master" ]  
   workflow_dispatch:
     
 
 jobs:
+  build:
+    name: Angular Build
+    runs-on: ubuntu-latest
+    steps:
+      # {2}
+      - name: Checkout the source code
+        uses: actions/checkout@v3
+
+      # {3}
+      - name: Install dependencies
+        run: npm ci
+
+      # {4}
+      - name: Build
+        run: npm run build
   deploy:
+    needs: build
     name: Deploy
     runs-on: ubuntu-latest
-    needs: build
     steps:
-      - name: Deploy
+      - name: deploy
         run: echo "Deploying to production"
